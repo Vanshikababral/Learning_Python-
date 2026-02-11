@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-5" style="width: 100%; max-width: 400px; background: white;">
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Welcome Back!</h2>
+            <p class="text-muted">Please login to continue</p>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-danger text-center rounded-pill" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" name="username" class="form-control" id="floatingUser" placeholder="username"
+                    required>
+                <label for="floatingUser">Username</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="password" name="password" class="form-control" id="floatingPass" placeholder="Password"
+                    required>
+                <label for="floatingPass">Password</label>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 py-2 fs-5 shadow-sm">
+                Login
+            </button>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-muted">New here? <a href="/" class="text-decoration-none fw-bold">Create Account</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-5" style="width: 100%; max-width: 400px; background: white;">
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Join Us! 🚀</h2>
+            <p class="text-muted">Create your account today</p>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-danger text-center rounded-pill" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username"
+                    required>
+                <label for="floatingInput">Choose Username</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    required>
+                <label for="floatingPassword">Choose Password</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fs-5 shadow-sm">
+                Register
+            </button>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-muted">Already have an account? <a href="/login" class="text-decoration-none fw-bold">Login
+                    here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

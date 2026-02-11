@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1 class="fw-bold display-5">Community Stories</h1>
+    <p class="text-muted fs-5">Discover what others are sharing.</p>
+</div>
+
+<div class="row g-4">
+    {% for blog in blogs %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+
+            {% if blog.image_b64 %}
+            <div style="height: 220px; overflow: hidden;">
+                <img src="data:image/jpeg;base64,{{ blog.image_b64 }}" class="w-100 h-100" style="object-fit: cover;">
+            </div>
+            {% else %}
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
+                <span class="text-muted fs-1">📝</span>
+            </div>
+            {% endif %}
+
+            <div class="card-body d-flex flex-column p-4">
+                <div class="mb-2">
+                    <span class="badge bg-light text-dark border rounded-pill px-3 py-2">
+                        👤 {{ blog.author }}
+                    </span>
+                </div>
+
+                <h4 class="card-title fw-bold text-dark mt-2">{{ blog.title }}</h4>
+                <p class="card-text text-secondary flex-grow-1">
+                    {{ blog.content[:100] }}...
+                </p>
+
+                {% if session.get('user_id') == blog.owner_id %}
+                <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                    <small class="text-success fw-bold">My Post</small>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('update', id=blog.id) }}"
+                            class="btn btn-sm btn-outline-warning rounded-pill px-3">Edit</a>
+
+                        <form action="{{ url_for('delete', id=blog.id) }}" method="POST" class="d-inline">
+                            <button type="submit"
+                                class="btn btn-sm btn-outline-danger rounded-pill px-3">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

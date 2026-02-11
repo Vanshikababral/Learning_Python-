@@ -1,0 +1,15 @@
+# Ignore the virtual environment directory
+venv/
+env/
+
+# Ignore database files (Security Risk!)
+*.db
+instance/
+blogger.db
+
+# Ignore compiled python files (Junk files)
+__pycache__/
+*.pyc
+
+# Ignore environment variables (if you use .env later)
+.env
